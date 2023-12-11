@@ -1436,7 +1436,8 @@ const PDFViewerApplication = {
       }
     }
     if (pdfTitle) {
-      this.setTitle(`${pdfTitle} - ${this._contentDispositionFilename || this._title}`);
+      // this.setTitle(`${pdfTitle} - ${this._contentDispositionFilename || this._title}`);
+      this.setTitle(`${this._contentDispositionFilename || this._title}`);  // mn297
     } else if (this._contentDispositionFilename) {
       this.setTitle(this._contentDispositionFilename);
     }
@@ -2399,6 +2400,7 @@ function webViewerTouchMove(evt) {
     }
   } else {
     const PIXELS_PER_LINE_SCALE = 30;
+    // const PIXELS_PER_LINE_SCALE = 1; // mn297
     const ticks = PDFViewerApplication._accumulateTicks((distance - pDistance) / PIXELS_PER_LINE_SCALE, "_touchUnusedTicks");
     if (ticks < 0) {
       PDFViewerApplication.zoomOut(-ticks);
