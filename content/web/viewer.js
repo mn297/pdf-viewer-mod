@@ -381,7 +381,8 @@ var _webSecondary_toolbar = __webpack_require__(38);
 var _webToolbar = __webpack_require__(39);
 var _view_history = __webpack_require__(40);
 const FORCE_PAGES_LOADED_TIMEOUT = 10000;
-const WHEEL_ZOOM_DISABLED_TIMEOUT = 1000;
+// const WHEEL_ZOOM_DISABLED_TIMEOUT = 1000;
+const WHEEL_ZOOM_DISABLED_TIMEOUT = 0;
 const ViewOnLoad = {
   UNKNOWN: -1,
   PREVIOUS: 0,
@@ -2284,7 +2285,8 @@ function webViewerWheel(evt) {
           ticks = PDFViewerApplication._accumulateTicks(delta, "_wheelUnusedTicks");
         }
       } else {
-        const PIXELS_PER_LINE_SCALE = 30;
+        // const PIXELS_PER_LINE_SCALE = 30;
+        const PIXELS_PER_LINE_SCALE = 60; // mn297
         ticks = PDFViewerApplication._accumulateTicks(delta / PIXELS_PER_LINE_SCALE, "_wheelUnusedTicks");
       }
       if (ticks < 0) {
@@ -2510,6 +2512,16 @@ function webViewerKeyDown(evt) {
           ensureViewerFocused = true;
         }
         break;
+      // mn297 shortcuts
+      case 81:2
+          PDFViewerApplication.pdfSidebar.toggle();
+          break;
+      case 88:
+          document.getElementById("spreadOdd").click();
+          break;
+      case 90:
+          document.getElementById("spreadNone").click();
+          break;
     }
   }
   if (cmd === 1 || cmd === 8) {
@@ -3340,7 +3352,9 @@ const defaultOptions = {
     kind: OptionKind.VIEWER
   },
   maxCanvasPixels: {
-    value: 16777216,
+    // value: 33554432,
+    // value: 67108864, //mn297
+    value: 536870912, //mn297
     kind: OptionKind.VIEWER
   },
   forcePageColors: {
@@ -12647,7 +12661,8 @@ class BasePreferences {
     "annotationEditorMode": 0,
     "annotationMode": 2,
     "cursorToolOnLoad": 0,
-    "defaultZoomDelay": 400,
+    // "defaultZoomDelay": 400,
+    "defaultZoomDelay": 0,  // mn297
     "defaultZoomValue": "",
     "disablePageLabels": false,
     "enablePermissions": false,

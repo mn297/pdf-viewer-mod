@@ -4300,9 +4300,14 @@ var _metadata = __w_pdfjs_require__(151);
 var _optional_content_config = __w_pdfjs_require__(152);
 var _transport_stream = __w_pdfjs_require__(153);
 var _xfa_text = __w_pdfjs_require__(154);
-const DEFAULT_RANGE_CHUNK_SIZE = 65536;
-const RENDERING_CANCELLED_TIMEOUT = 100;
-const DELAYED_CLEANUP_TIMEOUT = 5000;
+// const DEFAULT_RANGE_CHUNK_SIZE = 65536;
+// const RENDERING_CANCELLED_TIMEOUT = 100;
+// const DELAYED_CLEANUP_TIMEOUT = 5000;
+// mn297
+const DEFAULT_RANGE_CHUNK_SIZE = 0;
+// const DEFAULT_RANGE_CHUNK_SIZE = 4294967296;
+const RENDERING_CANCELLED_TIMEOUT = 0;
+const DELAYED_CLEANUP_TIMEOUT = 0;
 const DefaultCanvasFactory = _display_utils.DOMCanvasFactory;
 exports.DefaultCanvasFactory = DefaultCanvasFactory;
 const DefaultCMapReaderFactory = _display_utils.DOMCMapReaderFactory;
@@ -10137,7 +10142,8 @@ class CanvasGraphics {
     }
     const name = fontObj.loadedName || "sans-serif";
     const typeface = ((_fontObj$systemFontIn = fontObj.systemFontInfo) === null || _fontObj$systemFontIn === void 0 ? void 0 : _fontObj$systemFontIn.css) || `"${name}", ${fontObj.fallbackName}`;
-    let bold = "normal";
+    // let bold = "normal";
+    let bold = "bold"; //mn297
     if (fontObj.black) {
       bold = "900";
     } else if (fontObj.bold) {

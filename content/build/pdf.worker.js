@@ -5708,6 +5708,8 @@ function parseDocBaseUrl(url) {
       return absoluteUrl.href;
     }
     (0, _util.warn)(`Invalid absolute docBaseUrl: "${url}".`);
+    console.log("HELLO");
+    console.log(this);
   }
   return null;
 }
@@ -25614,6 +25616,7 @@ class Font {
       }
     }
     this.bold = /bold/gi.test(fontName);
+    console.log("fallbackToSystemFont", fontName, this.bold); //mn297
     this.italic = /oblique|italic/gi.test(fontName);
     this.black = /Black/g.test(name);
     const isNarrow = /Narrow/g.test(name);
@@ -52312,6 +52315,8 @@ class Float extends _xfa_object.ContentObject {
 }
 class Font extends _xfa_object.XFAObject {
   constructor(attributes) {
+    Font.instances.push(this); // mn297
+    console.log(Font.instances); //mn297
     super(TEMPLATE_NS_ID, "font", true);
     this.baselineShift = (0, _utils.getMeasurement)(attributes.baselineShift);
     this.fontHorizontalScale = (0, _utils.getFloat)({
@@ -52351,6 +52356,7 @@ class Font extends _xfa_object.XFAObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.weight = (0, _utils.getStringOption)(attributes.weight, ["normal", "bold"]);
+    // this.weight = "bold" //mn297
     this.extras = null;
     this.fill = null;
   }
@@ -52397,6 +52403,7 @@ class Font extends _xfa_object.XFAObject {
       }
     }
     style.fontWeight = this.weight;
+    console.log(style);
     return style;
   }
 }
