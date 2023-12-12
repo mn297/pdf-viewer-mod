@@ -2270,9 +2270,9 @@ function webViewerWheel(evt) {
     if (isPinchToZoom && supportsPinchToZoom) {
       scaleFactor = PDFViewerApplication._accumulateFactor(previousScale, scaleFactor, "_wheelUnusedFactor");
       if (scaleFactor < 1) {
-        PDFViewerApplication.zoomOut(null, scaleFactor);
+        PDFViewerApplication.zoomOut(null, scaleFactor/1.05);  // mn297
       } else if (scaleFactor > 1) {
-        PDFViewerApplication.zoomIn(null, scaleFactor);
+        PDFViewerApplication.zoomIn(null, scaleFactor*1.05); // mn297
       } else {
         return;
       }
